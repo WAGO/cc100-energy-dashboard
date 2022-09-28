@@ -104,6 +104,7 @@ grafana/grafana:8.4.4
 
 <p align="center">
 <img src="images/flow_store_mid_data.png"
+     width="600"
      alt="Node-RED Flow Store MID Data"
      title="Node-RED Flow Store MID Data"/>
 </p>
@@ -126,6 +127,8 @@ grafana/grafana:8.4.4
 5. Deploy the flow
 6. Click on the injection node to read the MID data and save it to the database
 
+> You can adapt the flow to your needs by reading other registers as well. The addresses of all registers that can be read can be found in the data sheet of the MID. Please note that the addresses for the Modbus read nodes must be specified as decimal values.
+
 ## Import Grafana dashboard
 1. Open Grafana by typing **\<ip of your PFC>\:3000** into your browser and log in by creating a new user
 2. Implement InfluxDB as datasource (Configuration - Add datasource - InfluxDB) as follows
@@ -143,7 +146,7 @@ grafana/grafana:8.4.4
      title="Configure InfluxDB as datasource"/>
 </p>
 
-> **wago** is the standard password of the database **homedb**
+> **wago1951** is the standard password of the database **homedb**
 
 3. Import the dashboard [Energy Dashboard](dashboard.json)
 
