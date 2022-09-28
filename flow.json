@@ -1,0 +1,1179 @@
+[
+    {
+        "id": "2027172989d39a92",
+        "type": "subflow",
+        "name": "Read MID Data",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 120,
+                "y": 280,
+                "wires": [
+                    {
+                        "id": "0a60d8383b1946f8"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 1020,
+                "y": 120,
+                "wires": [
+                    {
+                        "id": "534fc90aa3ca80a1",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1020,
+                "y": 160,
+                "wires": [
+                    {
+                        "id": "edbbc9d80acc4c59",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1020,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "61a65dbd157748a6",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1040,
+                "y": 240,
+                "wires": [
+                    {
+                        "id": "d044b21b1ca9c153",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1040,
+                "y": 280,
+                "wires": [
+                    {
+                        "id": "57d50502020ceefe",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1040,
+                "y": 320,
+                "wires": [
+                    {
+                        "id": "765b2b588999c4cd",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1030,
+                "y": 360,
+                "wires": [
+                    {
+                        "id": "f08d0f3333c9e617",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1040,
+                "y": 400,
+                "wires": [
+                    {
+                        "id": "297ce325955d4f36",
+                        "port": 0
+                    }
+                ]
+            },
+            {
+                "x": 1040,
+                "y": 440,
+                "wires": [
+                    {
+                        "id": "bc72b44cdacd6a0e",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#6EC800",
+        "inputLabels": [
+            "trigger"
+        ],
+        "outputLabels": [
+            "voltage",
+            "frequency",
+            "current",
+            "effective power",
+            "reactive power",
+            "apparent power",
+            "power factor",
+            "effective energy",
+            "reactive energy"
+        ],
+        "icon": "node-red-contrib-modbus/modbus.png"
+    },
+    {
+        "id": "0a60d8383b1946f8",
+        "type": "modbus-flex-sequencer",
+        "z": "2027172989d39a92",
+        "name": "",
+        "sequences": [
+            {
+                "name": "voltage",
+                "unitid": "1",
+                "fc": "FC3",
+                "address": "20482",
+                "quantity": "6"
+            },
+            {
+                "name": "frequency",
+                "unitid": "1",
+                "fc": "FC3",
+                "address": "20488",
+                "quantity": "2"
+            },
+            {
+                "name": "current",
+                "unitid": "1",
+                "fc": "FC3",
+                "address": "20492",
+                "quantity": "6"
+            },
+            {
+                "name": "eff_power",
+                "unitid": "1",
+                "fc": "FC3",
+                "address": "20498",
+                "quantity": "8"
+            },
+            {
+                "name": "reac_power",
+                "unitid": "1",
+                "fc": "FC3",
+                "address": "20506",
+                "quantity": "8"
+            },
+            {
+                "name": "app_power",
+                "unitid": "1",
+                "fc": "FC3",
+                "address": "20514",
+                "quantity": "8"
+            },
+            {
+                "name": "power_factor",
+                "unitid": "1",
+                "fc": "FC3",
+                "address": "20522",
+                "quantity": "8"
+            },
+            {
+                "name": "eff_energy",
+                "unitid": "1",
+                "fc": "FC3",
+                "address": "24576",
+                "quantity": "12"
+            },
+            {
+                "name": "reac_energy",
+                "unitid": "1",
+                "fc": "FC3",
+                "address": "24612",
+                "quantity": "12"
+            }
+        ],
+        "server": "f916ff91cd483ac8",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "logIOActivities": false,
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": true,
+        "x": 320,
+        "y": 280,
+        "wires": [
+            [
+                "4fa673cb775983f6"
+            ],
+            []
+        ],
+        "info": "if (name === \"voltage_L1\"){\r\n    msg.topic = \"voltage_L1\";\r\n} else {\r\n    msg.topic = \"default\";\r\n}\r\n\r\n"
+    },
+    {
+        "id": "4fa673cb775983f6",
+        "type": "switch",
+        "z": "2027172989d39a92",
+        "name": "",
+        "property": "name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "voltage",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "frequency",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "current",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "eff_power",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "reac_power",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "app_power",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "power_factor",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "eff_energy",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "reac_energy",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 9,
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "534fc90aa3ca80a1"
+            ],
+            [
+                "edbbc9d80acc4c59"
+            ],
+            [
+                "61a65dbd157748a6"
+            ],
+            [
+                "d044b21b1ca9c153"
+            ],
+            [
+                "57d50502020ceefe"
+            ],
+            [
+                "765b2b588999c4cd"
+            ],
+            [
+                "f08d0f3333c9e617"
+            ],
+            [
+                "297ce325955d4f36"
+            ],
+            [
+                "bc72b44cdacd6a0e"
+            ]
+        ]
+    },
+    {
+        "id": "d044b21b1ca9c153",
+        "type": "buffer-parser",
+        "z": "2027172989d39a92",
+        "name": "effective power",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "floatbe",
+                "name": "Total Effective Power",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Effective Power L1",
+                "offset": 4,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Effective Power L2",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Effective Power L3",
+                "offset": 12,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 820,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "534fc90aa3ca80a1",
+        "type": "buffer-parser",
+        "z": "2027172989d39a92",
+        "name": "voltage",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "floatbe",
+                "name": "Voltage L1",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Voltage L2",
+                "offset": 4,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Voltage L3",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 800,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61a65dbd157748a6",
+        "type": "buffer-parser",
+        "z": "2027172989d39a92",
+        "name": "current",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "floatbe",
+                "name": "Current L1",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Current L2",
+                "offset": 4,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Current L3",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 800,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "edbbc9d80acc4c59",
+        "type": "buffer-parser",
+        "z": "2027172989d39a92",
+        "name": "frequency",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "floatbe",
+                "name": "Frequency",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 800,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "57d50502020ceefe",
+        "type": "buffer-parser",
+        "z": "2027172989d39a92",
+        "name": "reactive power",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "floatbe",
+                "name": "Total Reactive Power",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Reactive Power L1",
+                "offset": 4,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Reactive Power L2",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Reactive Power L3",
+                "offset": 12,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 820,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "765b2b588999c4cd",
+        "type": "buffer-parser",
+        "z": "2027172989d39a92",
+        "name": "apparent power",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "floatbe",
+                "name": "Total Apparent Power",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Apparent Power L1",
+                "offset": 4,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Apparent Power L2",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Apparent Power L3",
+                "offset": 12,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 820,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f08d0f3333c9e617",
+        "type": "buffer-parser",
+        "z": "2027172989d39a92",
+        "name": "power factor",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "floatbe",
+                "name": "Total Power Factor",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Power Factor L1",
+                "offset": 4,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Power Factor L2",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Power Factor L3",
+                "offset": 12,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 810,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "297ce325955d4f36",
+        "type": "buffer-parser",
+        "z": "2027172989d39a92",
+        "name": "effective energy",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "floatbe",
+                "name": "Total Effective Energy",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Effective Energy T1",
+                "offset": 4,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Effective Energy T2",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Effective Energy L1",
+                "offset": 12,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Effective Energy L2",
+                "offset": 16,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Effective Energy L3",
+                "offset": 20,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 820,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bc72b44cdacd6a0e",
+        "type": "buffer-parser",
+        "z": "2027172989d39a92",
+        "name": "reactive energy",
+        "data": "payload",
+        "dataType": "msg",
+        "specification": "spec",
+        "specificationType": "ui",
+        "items": [
+            {
+                "type": "floatbe",
+                "name": "Total Reactive Energy",
+                "offset": 0,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Reactive Energy T1",
+                "offset": 4,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Reactive Energy T2",
+                "offset": 8,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Reactive Energy L1",
+                "offset": 12,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Reactive Energy L2",
+                "offset": 16,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            },
+            {
+                "type": "floatbe",
+                "name": "Reactive Energy L3",
+                "offset": 20,
+                "length": 1,
+                "offsetbit": 0,
+                "scale": "1",
+                "mask": ""
+            }
+        ],
+        "swap1": "",
+        "swap2": "",
+        "swap3": "",
+        "swap1Type": "swap",
+        "swap2Type": "swap",
+        "swap3Type": "swap",
+        "msgProperty": "payload",
+        "msgPropertyType": "str",
+        "resultType": "keyvalue",
+        "resultTypeType": "return",
+        "multipleResult": false,
+        "fanOutMultipleResult": false,
+        "setTopic": true,
+        "outputs": 1,
+        "x": 820,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f916ff91cd483ac8",
+        "type": "modbus-client",
+        "name": "MID",
+        "clienttype": "serial",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.178.68",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/serial",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "even",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "1000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true
+    },
+    {
+        "id": "751c53135e4ee19d",
+        "type": "tab",
+        "label": "Store MID Data",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b3461e16dd6597e0",
+        "type": "inject",
+        "z": "751c53135e4ee19d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "30",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 260,
+        "wires": [
+            [
+                "c29d33605f5bc99b"
+            ]
+        ]
+    },
+    {
+        "id": "1576c89c5cc662fc",
+        "type": "influxdb out",
+        "z": "751c53135e4ee19d",
+        "influxdb": "822c5f5d9e0573e7",
+        "name": "",
+        "measurement": "voltage",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 630,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "06b904d0029a0d53",
+        "type": "influxdb out",
+        "z": "751c53135e4ee19d",
+        "influxdb": "822c5f5d9e0573e7",
+        "name": "",
+        "measurement": "frequency",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 640,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "d2b992e2fe19b1e0",
+        "type": "influxdb out",
+        "z": "751c53135e4ee19d",
+        "influxdb": "822c5f5d9e0573e7",
+        "name": "",
+        "measurement": "current",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 630,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3f18f038d06f60b9",
+        "type": "influxdb out",
+        "z": "751c53135e4ee19d",
+        "influxdb": "822c5f5d9e0573e7",
+        "name": "",
+        "measurement": "effective_power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 660,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "997fb5c21e8818d8",
+        "type": "influxdb out",
+        "z": "751c53135e4ee19d",
+        "influxdb": "822c5f5d9e0573e7",
+        "name": "",
+        "measurement": "reactive_power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 650,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "869404e62d8205bb",
+        "type": "influxdb out",
+        "z": "751c53135e4ee19d",
+        "influxdb": "822c5f5d9e0573e7",
+        "name": "",
+        "measurement": "apparent_power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 660,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "86499c49f504134e",
+        "type": "influxdb out",
+        "z": "751c53135e4ee19d",
+        "influxdb": "822c5f5d9e0573e7",
+        "name": "",
+        "measurement": "power_factor",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 650,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f010939f75f82d39",
+        "type": "influxdb out",
+        "z": "751c53135e4ee19d",
+        "influxdb": "822c5f5d9e0573e7",
+        "name": "",
+        "measurement": "effective_energy",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 660,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "70b893bc310f5d11",
+        "type": "influxdb out",
+        "z": "751c53135e4ee19d",
+        "influxdb": "822c5f5d9e0573e7",
+        "name": "",
+        "measurement": "reactive_energy",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 660,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "c29d33605f5bc99b",
+        "type": "subflow:2027172989d39a92",
+        "z": "751c53135e4ee19d",
+        "name": "",
+        "x": 340,
+        "y": 260,
+        "wires": [
+            [
+                "1576c89c5cc662fc"
+            ],
+            [
+                "06b904d0029a0d53"
+            ],
+            [
+                "d2b992e2fe19b1e0"
+            ],
+            [
+                "3f18f038d06f60b9"
+            ],
+            [
+                "997fb5c21e8818d8"
+            ],
+            [
+                "869404e62d8205bb"
+            ],
+            [
+                "86499c49f504134e"
+            ],
+            [
+                "f010939f75f82d39"
+            ],
+            [
+                "70b893bc310f5d11"
+            ]
+        ]
+    },
+    {
+        "id": "822c5f5d9e0573e7",
+        "type": "influxdb",
+        "hostname": "192.168.178.68",
+        "port": "8086",
+        "protocol": "http",
+        "database": "homedb",
+        "name": "MID",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "rejectUnauthorized": true
+    }
+]
