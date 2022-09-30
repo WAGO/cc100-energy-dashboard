@@ -1,5 +1,5 @@
 # cc100-energy-dashboard
-This repository shows the implementation of an energy dashboard on the WAGO CC100 using several Docker containers (Node RED, InfluxDB and Grafana). The WAGO energy meter (MID) is used as an example source for the energy data.
+This repository shows the implementation of an energy dashboard on the WAGO CC100 using several Docker containers (Node-RED, InfluxDB and Grafana). The WAGO energy meter (MID) is used as an example source for the energy data.
 
 <p align="center">
 <img src="images/grafana_dashboard.png"
@@ -24,8 +24,8 @@ The idea is to use the CC100 to read energy data from the MID via Modbus RTU and
 
 <p align="center">
 <img src="images/concept.png"
-     alt="Grafana Energy Dashboard"
-     title="Grafana Energy Dashboard"/>
+     alt="Concept"
+     title="Concept"/>
 </p>
 
 Connect the terminals X11.1 and X11.2 of the CC100 with the terminals 7 and 8 of the MID
@@ -151,7 +151,9 @@ grafana/grafana:8.4.4
 3. Import the dashboard [Energy Dashboard](dashboard.json)
 
 ## Further CC100 projects
-[CC100 video tutorials](https://www.youtube.com/channel/UCV2GhmZPWc5JU73ktI1St4Q/videos)
+* [CC100 video tutorials](https://www.youtube.com/channel/UCV2GhmZPWc5JU73ktI1St4Q/videos)
+* [cc100-serial-communication](https://github.com/WAGO/cc100-serial-communication)
+* [cc100-mid-dashboard](https://github.com/WAGO/cc100-mid-dashboard)
 
 ## Sources
 * [WAGO CC100 data sheet](https://www.wago.com/global/plcs-%E2%80%93-controllers/compact-controller-100/p/751-9301)
