@@ -66,7 +66,7 @@ docker images       # lists all preinstalled images
 -v /dev/ttySTM1:/dev/serial \
 nodered/node-red
 </code></pre>
-!!! Wait for Container finish to make sure InfluxDB was created !!!<br><br>
+
 2. InfluxDB
 <pre><code>docker run --rm \
 -e INFLUXDB_DB=homedb \
@@ -77,6 +77,7 @@ nodered/node-red
 -e INFLUXDB_USER_PASSWORD=wago1951 \
 -v influxdb-storage:/var/lib/influxdb \
 influxdb:1.8.4 /init-influxdb.sh
+<br>!!! Wait for Container finish to make sure InfluxDB was created !!!<br><br>
 </code></pre>
 <pre><code>docker run -d \
 --name influxdb \
