@@ -66,7 +66,7 @@ docker images       # lists all preinstalled images
 -v /dev/ttySTM1:/dev/serial \
 nodered/node-red
 </code></pre>
-
+!!! Wait for Container finish to make sure InfluxDB was created !!!
 2. InfluxDB
 <pre><code>docker run --rm \
 -e INFLUXDB_DB=homedb \
