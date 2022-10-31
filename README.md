@@ -77,8 +77,8 @@ nodered/node-red
 -e INFLUXDB_USER_PASSWORD=wago1951 \
 -v influxdb-storage:/var/lib/influxdb \
 influxdb:1.8.4 /init-influxdb.sh
-<br>!!! Wait for Container finish to make sure InfluxDB was created !!!<br><br>
 </code></pre>
+<br>!!! Wait for Container finish to make sure InfluxDB was created !!!<br><br>
 <pre><code>docker run -d \
 --name influxdb \
 --restart always \
